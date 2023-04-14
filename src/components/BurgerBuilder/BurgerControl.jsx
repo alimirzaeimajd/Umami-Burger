@@ -1,6 +1,6 @@
 import styles from "./BurgerControl.module.css";
 
-function BurgerControl({ remove, disabled, label, add }) {
+export default function BurgerControl({ remove, disabled, label, add }) {
   return (
     <div className={styles.BuildControl}>
       <div className={styles.Label}>{label}</div>
@@ -33,5 +33,3 @@ function BurgerControl({ remove, disabled, label, add }) {
     </div>
   );
 }
-
-export default BurgerControl;

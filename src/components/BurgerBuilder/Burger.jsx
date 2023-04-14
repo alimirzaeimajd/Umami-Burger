@@ -17,7 +17,6 @@ const Burger = ({ ingredients }) => {
       <p className="text-danger prevent-select">Please add something!</p>
     );
   }
-  console.log(transformedIngredients);
   return (
     <div className={styles.Burger}>
       <BurgerIngredients type="bread-top" />

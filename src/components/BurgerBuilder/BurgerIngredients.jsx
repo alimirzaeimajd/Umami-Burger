@@ -1,7 +1,7 @@
 import styles from "./BurgerIngredients.module.css";
 import PropTypes from "prop-types";
 
-function BurgerIngredients({ type }) {
+export default function BurgerIngredients({ type }) {
   let ingredient = null;
 
   switch (type) {
@@ -37,5 +37,3 @@ function BurgerIngredients({ type }) {
 BurgerIngredients.propTypes = {
   type: PropTypes.string.isRequired,
 };
-
-export default BurgerIngredients;

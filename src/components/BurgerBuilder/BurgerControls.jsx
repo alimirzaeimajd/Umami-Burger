@@ -1,6 +1,10 @@
 import styles from "./BurgerControls.module.css";
 import BurgerControl from "./BurgerControl";
-function BurgerControls({ totalprice, addIngredients, removeIngredients }) {
+export default function BurgerControls({
+  totalprice,
+  addIngredients,
+  removeIngredients,
+}) {
   const controls = [
     { label: "Meat", type: "meat" },
     { label: "Salad", type: "salad" },
@@ -27,5 +31,3 @@ function BurgerControls({ totalprice, addIngredients, removeIngredients }) {
     </div>
   );
 }
-
-export default BurgerControls;

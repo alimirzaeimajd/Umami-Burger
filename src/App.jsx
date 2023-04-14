@@ -1,10 +1,8 @@
-import BurgerBuilder from "./components/BurgerBuilder";
-function App() {
+import BurgerBuilder from "./components/BurgerBuilder/BurgerBuilder";
+export default function App() {
   return (
     <>
       <BurgerBuilder />
     </>
   );
 }
-
-export default App;
