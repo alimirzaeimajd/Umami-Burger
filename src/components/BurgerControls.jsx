@@ -1,6 +1,6 @@
 import styles from "./BurgerControls.module.css";
-
-function BurgerControls({}) {
+import BurgerControl from "./BurgerControl";
+function BurgerControls({ totalprice, addIngredients, removeIngredients }) {
   const controls = [
     { label: "Meat", type: "meat" },
     { label: "Salad", type: "salad" },
@@ -8,28 +8,22 @@ function BurgerControls({}) {
     { label: "Cheese", type: "cheese" },
   ];
   return (
-    <div>
-      <p>
+    <div className={styles.BuildControls}>
+      <p className={styles.textLighth3}>
         {" "}
         <strong>purchasable:</strong>
       </p>
-      <p>{props.totalprice.toFixed(2)}$</p>
+      {/* .toFixed(2) */}
+      <p>{totalprice}$</p>
       {controls.map((ctrl) => (
         <BurgerControl
           key={ctrl.label}
           label={ctrl.label}
-          add={() => props.addIngredients(ctrl.type)}
-          remove={() => props.removeIngredients(ctrl.type)}
-          disabled={props.disabled[ctrl.type]}
+          add={() => addIngredients(ctrl.type)}
+          remove={() => removeIngredients(ctrl.type)}
         />
       ))}
-      <button
-        className={styles.OrderButton}
-        disabled={!props.purchasable}
-        onClick={props.orderOn}
-      >
-        Order
-      </button>
+      <button className={styles.OrderButton}>Order</button>
     </div>
   );
 }

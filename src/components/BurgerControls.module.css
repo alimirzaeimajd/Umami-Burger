@@ -53,11 +53,16 @@
     }
 }
 
-.prevent-select {
+.preventSelect {
     -webkit-user-select: none;
     /* Safari */
     -ms-user-select: none;
     /* IE 10 and IE 11 */
     user-select: none;
     /* Standard syntax */
+}
+
+.textLighth3 {
+    color: #f8f9fa !important;
+    font-size: calc(1.3rem + .6vw);
 }

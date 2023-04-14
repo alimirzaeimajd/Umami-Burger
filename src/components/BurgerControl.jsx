@@ -1,14 +1,10 @@
 import styles from "./BurgerControl.module.css";
 
-function BurgerControl() {
+function BurgerControl({ remove, disabled, label, add }) {
   return (
     <div className={styles.BuildControl}>
-      <div className={styles.Label}>{props.label}</div>
-      <button
-        className={styles.Less}
-        onClick={props.remove}
-        disabled={props.disabled}
-      >
+      <div className={styles.Label}>{label}</div>
+      <button className={styles.Less} onClick={remove} disabled={disabled}>
         Remove{" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +17,7 @@ function BurgerControl() {
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z" />
         </svg>
       </button>
-      <button className={styles.More} onClick={props.add}>
+      <button className={styles.More} onClick={add}>
         Add{" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"
