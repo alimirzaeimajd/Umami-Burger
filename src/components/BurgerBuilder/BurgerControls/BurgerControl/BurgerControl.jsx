@@ -1,5 +1,5 @@
 import styles from "./BurgerControl.module.css";
-
+import Button from "react-bootstrap/Button";
 export default function BurgerControl({ remove, disabled, label, add }) {
   return (
     <div className={styles.BuildControl}>

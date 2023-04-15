@@ -1,5 +1,5 @@
 import styles from "./BurgerControls.module.css";
-import BurgerControl from "./BurgerControl";
+import BurgerControl from "./BurgerControl/BurgerControl";
 export default function BurgerControls({
   totalprice,
   addIngredients,
