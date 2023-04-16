@@ -9,11 +9,11 @@ export default function BurgerBuilder() {
     cheese: 1,
     bacon: 1,
   });
-  const [totalPrice, setTotalPrice] = useState(0);
+  // const [totalPrice, setTotalPrice] = useState(0);
   const [meat, setMeat] = useState(1);
-  const [salad, setSalad] = useState(1);
-  const [bacon, setBacon] = useState(1);
-  const [cheese, setCheese] = useState(1);
+  // const [salad, setSalad] = useState(1);
+  // const [bacon, setBacon] = useState(1);
+  // const [cheese, setCheese] = useState(1);
   const [ingredientsPrices, setIngredientPrices] = useState({
     salad: 0.25,
     cheese: 0.5,
@@ -21,11 +21,19 @@ export default function BurgerBuilder() {
     bacon: 1,
   });
 
+  function addMeatHandler() {
+    setMeat(meat + 1);
+  }
+
+  function removeMeatHandler() {
+    setMeat(meat - 1);
+  }
+
   return (
     <>
       <BootstrapNavbar />
       <Burger ingredients={ingredients} />
-      <BurgerControls />
+      <BurgerControls addMeat={addMeatHandler} removeMeat={removeMeatHandler} />
     </>
   );
 }

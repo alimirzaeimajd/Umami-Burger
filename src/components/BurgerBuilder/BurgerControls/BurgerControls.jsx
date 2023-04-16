@@ -1,10 +1,5 @@
 import styles from "./BurgerControls.module.css";
-import BurgerControl from "./BurgerControl/BurgerControl";
-export default function BurgerControls({
-  totalprice,
-  addIngredients,
-  removeIngredients,
-}) {
+export default function BurgerControls({ totalprice, addMeat, removeMeat }) {
   const controls = [
     { label: "Meat", type: "meat" },
     { label: "Salad", type: "salad" },
@@ -19,15 +14,29 @@ export default function BurgerControls({
       </p>
       {/* .toFixed(2) */}
       <p>{totalprice}$</p>
-      {controls.map((ctrl) => (
-        <BurgerControl
-          key={ctrl.label}
-          label={ctrl.label}
-          add={() => addIngredients(ctrl.type)}
-          remove={() => removeIngredients(ctrl.type)}
-        />
-      ))}
+      <div>
+        <div>Meat</div>
+        <button onClick={removeMeat}>Remove </button>
+        <button onClick={addMeat}>Add </button>
+      </div>
+
+      {/* <div>
+        <div>Salad</div>
+        <button onClick={removeSalad}>Remove </button>
+        <button onClick={addSalad}>Add </button>
+      </div>
+      <div>
+        <div>Cheese</div>
+        <button onClick={removeCheese}>Remove </button>
+        <button onClick={addMeat}>Add </button>
+      </div>
+      <div>
+        <div>Bacon</div>
+        <button onClick={removeBacon}>Remove </button>
+        <button onClick={addBacon}>Add </button>
+      </div>
       <button className={styles.OrderButton}>Order</button>
+    </div> */}
     </div>
   );
 }
