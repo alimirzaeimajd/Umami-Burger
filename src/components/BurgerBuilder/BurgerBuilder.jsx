@@ -3,37 +3,36 @@ import Burger from "./Burger/Burger";
 import BurgerControls from "./BurgerControls/BurgerControls";
 import BootstrapNavbar from "../ReactBootsrap/BootstrapNavbar";
 export default function BurgerBuilder() {
-  const [ingredients, setIngredients] = useState({
-    meat: 1,
-    salad: 1,
-    cheese: 1,
-    bacon: 1,
-  });
-  // const [totalPrice, setTotalPrice] = useState(0);
-  const [meat, setMeat] = useState(1);
-  // const [salad, setSalad] = useState(1);
-  // const [bacon, setBacon] = useState(1);
-  // const [cheese, setCheese] = useState(1);
-  const [ingredientsPrices, setIngredientPrices] = useState({
-    salad: 0.25,
-    cheese: 0.5,
-    meat: 5,
-    bacon: 1,
+  const [state] = useState({
+    ingredients: {
+      meat: 1,
+      salad: 1,
+      cheese: 1,
+      bacon: 1,
+    },
+    totalPrice: 0,
   });
 
-  function addMeatHandler() {
-    setMeat(meat + 1);
-  }
-
-  function removeMeatHandler() {
-    setMeat(meat - 1);
-  }
+  // addIngredientsHandler = (type) => {
+  //   const oldCount = state.ingredients[type];
+  //   const updatedCount = oldCount + 1;
+  //   const updatedIngredients = {
+  //     ...state.ingredients,
+  //   };
+  //   updatedIngredients[type] = updatedCount;
+  //   const showPrice = INGREDIENT_PRICES[type];
+  //   const oldPrice = this.state.totalPrice;
+  //   const newPrice = oldPrice + showPrice;
+  //   this.setState({ ingredients: updatedIngredients, totalPrice: newPrice });
+  //   this.updatePurchasable(updatedIngredients);
+  // };
 
   return (
     <>
       <BootstrapNavbar />
-      <Burger ingredients={ingredients} />
-      <BurgerControls addMeat={addMeatHandler} removeMeat={removeMeatHandler} />
+      <Burger ingredients={state.ingredients} />
+      {/* <BurgerControls /> */}
     </>
   );
 }
+// issue and the idea to fix it: set initialState, set add and remove ingredients with initialState using old code, fix bugs, build the app slowly with details
