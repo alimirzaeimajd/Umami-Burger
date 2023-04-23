@@ -3,7 +3,7 @@ import Burger from "./Burger/Burger";
 import BurgerControls from "./BurgerControls/BurgerControls";
 import BootstrapNavbar from "../ReactBootsrap/BootstrapNavbar";
 export default function BurgerBuilder() {
-  const [state] = useState({
+  const [state, setState] = useState({
     ingredients: {
       meat: 1,
       salad: 1,
@@ -11,6 +11,12 @@ export default function BurgerBuilder() {
       bacon: 1,
     },
     totalPrice: 0,
+    INGREDIENT_PRICES: {
+      salad: 0.25,
+      cheese: 0.5,
+      meat: 5,
+      bacon: 1,
+    },
   });
 
   // addIngredientsHandler = (type) => {
@@ -27,11 +33,44 @@ export default function BurgerBuilder() {
   //   this.updatePurchasable(updatedIngredients);
   // };
 
+  const addIngredientsHandler = (type) => {
+    const oldCount = state.ingredients[type];
+    const updatedCount = oldCount + 1;
+    const updatedIngredients = {
+      ...state.ingredients,
+    };
+    updatedIngredients[type] = updatedCount;
+    const showPrice = state.INGREDIENT_PRICES[type];
+    const oldPrice = state.totalPrice;
+    const newPrice = oldPrice + showPrice;
+    setState({ ingredients: updatedIngredients, totalPrice: newPrice });
+  };
+
+  const removeIngredientsHandler = (type) => {
+    const oldCount = state.ingredients[type];
+    if (oldCount <= 0) {
+      return;
+    }
+    const updatedCount = oldCount - 1;
+    const updatedIngredients = {
+      ...state.ingredients,
+    };
+    updatedIngredients[type] = updatedCount;
+    const showPrice = state.INGREDIENT_PRICES[type];
+    const oldPrice = state.totalPrice;
+    const newPrice = oldPrice - showPrice;
+    setState({ ingredients: updatedIngredients, totalPrice: newPrice });
+  };
+
   return (
     <>
       <BootstrapNavbar />
       <Burger ingredients={state.ingredients} />
-      {/* <BurgerControls /> */}
+      <BurgerControls
+        addIngredients={addIngredientsHandler}
+        removeIngredients={removeIngredientsHandler}
+        totalprice={state.totalPrice}
+      />
     </>
   );
 }
