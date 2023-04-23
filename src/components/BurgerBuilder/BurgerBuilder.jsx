@@ -18,21 +18,6 @@ export default function BurgerBuilder() {
       bacon: 1,
     },
   });
-
-  // addIngredientsHandler = (type) => {
-  //   const oldCount = state.ingredients[type];
-  //   const updatedCount = oldCount + 1;
-  //   const updatedIngredients = {
-  //     ...state.ingredients,
-  //   };
-  //   updatedIngredients[type] = updatedCount;
-  //   const showPrice = INGREDIENT_PRICES[type];
-  //   const oldPrice = this.state.totalPrice;
-  //   const newPrice = oldPrice + showPrice;
-  //   this.setState({ ingredients: updatedIngredients, totalPrice: newPrice });
-  //   this.updatePurchasable(updatedIngredients);
-  // };
-
   const addIngredientsHandler = (type) => {
     const oldCount = state.ingredients[type];
     const updatedCount = oldCount + 1;
@@ -43,14 +28,16 @@ export default function BurgerBuilder() {
     const showPrice = state.INGREDIENT_PRICES[type];
     const oldPrice = state.totalPrice;
     const newPrice = oldPrice + showPrice;
-    setState({ ingredients: updatedIngredients, totalPrice: newPrice });
+    setState({
+      ...state,
+      ingredients: updatedIngredients,
+      totalPrice: newPrice,
+    });
   };
 
   const removeIngredientsHandler = (type) => {
     const oldCount = state.ingredients[type];
-    if (oldCount <= 0) {
-      return;
-    }
+
     const updatedCount = oldCount - 1;
     const updatedIngredients = {
       ...state.ingredients,
@@ -59,7 +46,11 @@ export default function BurgerBuilder() {
     const showPrice = state.INGREDIENT_PRICES[type];
     const oldPrice = state.totalPrice;
     const newPrice = oldPrice - showPrice;
-    setState({ ingredients: updatedIngredients, totalPrice: newPrice });
+    setState({
+      ...state,
+      ingredients: updatedIngredients,
+      totalPrice: newPrice,
+    });
   };
 
   return (
@@ -74,4 +65,3 @@ export default function BurgerBuilder() {
     </>
   );
 }
-// issue and the idea to fix it: set initialState, set add and remove ingredients with initialState using old code, fix bugs, build the app slowly with details
