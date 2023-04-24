@@ -33,6 +33,7 @@ export default function BurgerBuilder() {
       ingredients: updatedIngredients,
       totalPrice: newPrice,
     });
+    console.log('added!')
   };
 
   const removeIngredientsHandler = (type) => {
