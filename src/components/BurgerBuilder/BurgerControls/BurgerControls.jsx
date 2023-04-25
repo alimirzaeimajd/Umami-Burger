@@ -22,6 +22,7 @@ const BurgerControls = (props) => (
         label={ctrl.label}
         add={() => props.addIngredients(ctrl.type)}
         remove={() => props.removeIngredients(ctrl.type)}
+        disabled={props.disabled[ctrl.type]}
       />
     ))}
     <button className={styles.OrderButton}>Order</button>

@@ -33,7 +33,6 @@ export default function BurgerBuilder() {
       ingredients: updatedIngredients,
       totalPrice: newPrice,
     });
-    console.log('added!')
   };
 
   const removeIngredientsHandler = (type) => {
@@ -53,6 +52,12 @@ export default function BurgerBuilder() {
       totalPrice: newPrice,
     });
   };
+  const disableButton = {
+    ...state.ingredients,
+  };
+  for (let key in disableButton) {
+    disableButton[key] = disableButton[key] <= 0;
+  }
 
   return (
     <>
@@ -62,6 +67,7 @@ export default function BurgerBuilder() {
         addIngredients={addIngredientsHandler}
         removeIngredients={removeIngredientsHandler}
         totalprice={state.totalPrice}
+        disabled={disableButton}
       />
     </>
   );
