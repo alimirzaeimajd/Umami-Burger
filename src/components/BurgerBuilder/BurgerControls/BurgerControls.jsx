@@ -15,7 +15,7 @@ const BurgerControls = (props) => (
       {" "}
       <strong>purchasable:</strong>
     </p>
-    <p>{props.totalprice.toFixed(2)}$</p>
+    <p className={styles.h2}>{props.totalprice.toFixed(2)}$</p>
     {controls.map((ctrl) => (
       <BurgerControl
         key={ctrl.label}

@@ -17,7 +17,12 @@ export default function BurgerBuilder() {
       meat: 5,
       bacon: 1,
     },
+    purchasable: false,
   });
+  function updatePurchasable({ ...ingredient }) {
+    const sum = Object.values(ingredient).reduce((sum, val) => sum + val, 0);
+    setState({ purchasable: sum > 0 });
+  }
   const addIngredientsHandler = (type) => {
     const oldCount = state.ingredients[type];
     const updatedCount = oldCount + 1;
@@ -34,10 +39,11 @@ export default function BurgerBuilder() {
       totalPrice: newPrice,
     });
   };
-
   const removeIngredientsHandler = (type) => {
     const oldCount = state.ingredients[type];
-
+    if (oldCount < 0) {
+      return;
+    }
     const updatedCount = oldCount - 1;
     const updatedIngredients = {
       ...state.ingredients,
@@ -46,11 +52,13 @@ export default function BurgerBuilder() {
     const showPrice = state.INGREDIENT_PRICES[type];
     const oldPrice = state.totalPrice;
     const newPrice = oldPrice - showPrice;
+
     setState({
       ...state,
       ingredients: updatedIngredients,
       totalPrice: newPrice,
     });
+    updatePurchasable(updatedIngredients);
   };
   const disableButton = {
     ...state.ingredients,

@@ -66,3 +66,7 @@
     color: #f8f9fa !important;
     font-size: calc(1.3rem + .6vw);
 }
+
+.h2 {
+    font-size: calc(1.325rem + .9vw);
+}

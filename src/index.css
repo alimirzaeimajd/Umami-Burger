@@ -1,6 +1,8 @@
 :root {
-    font-family: 'Mynerve', cursive;
+    /* font-family: 'Mynerve', cursive; */
     /* background-color: #FE3A4A; */
+    font-family: 'Mynerve', cursive !important;
+    font-family: 'Roboto', sans-serif !important;
     color: white;
 }
 
