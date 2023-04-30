@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./BurgerControls.module.css";
 import BurgerControl from "./BurgerControl/BurgerControl";
-
+import { Link } from "react-router-dom";
 const controls = [
   { label: "Meat", type: "meat" },
   { label: "Salad", type: "salad" },
@@ -25,7 +25,9 @@ const BurgerControls = (props) => (
         disabled={props.disabled[ctrl.type]}
       />
     ))}
-    <button className={styles.OrderButton}>Order</button>
+    <button className={styles.OrderButton}>
+      <Link to="/order-page">Order</Link>
+    </button>
   </div>
 );
 

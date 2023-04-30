@@ -70,3 +70,8 @@
 .h2 {
     font-size: calc(1.325rem + .9vw);
 }
+
+.OrderButton a {
+    color: #966909 !important;
+    text-decoration: none !important;
+}

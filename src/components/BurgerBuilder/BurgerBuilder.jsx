@@ -2,13 +2,15 @@ import { useState } from "react";
 import Burger from "./Burger/Burger";
 import BurgerControls from "./BurgerControls/BurgerControls";
 import BootstrapNavbar from "../ReactBootsrap/BootstrapNavbar";
+import OrderPage from "../../pages/OrderPage";
+import { Route, Routes } from "react-router-dom";
 export default function BurgerBuilder() {
   const [state, setState] = useState({
     ingredients: {
-      meat: 1,
-      salad: 1,
-      cheese: 1,
-      bacon: 1,
+      meat: 0,
+      salad: 0,
+      cheese: 0,
+      bacon: 0,
     },
     totalPrice: 0,
     INGREDIENT_PRICES: {
@@ -19,10 +21,7 @@ export default function BurgerBuilder() {
     },
     purchasable: false,
   });
-  function updatePurchasable({ ...ingredient }) {
-    const sum = Object.values(ingredient).reduce((sum, val) => sum + val, 0);
-    setState({ purchasable: sum > 0 });
-  }
+
   const addIngredientsHandler = (type) => {
     const oldCount = state.ingredients[type];
     const updatedCount = oldCount + 1;
@@ -41,9 +40,7 @@ export default function BurgerBuilder() {
   };
   const removeIngredientsHandler = (type) => {
     const oldCount = state.ingredients[type];
-    if (oldCount < 0) {
-      return;
-    }
+
     const updatedCount = oldCount - 1;
     const updatedIngredients = {
       ...state.ingredients,
@@ -52,13 +49,11 @@ export default function BurgerBuilder() {
     const showPrice = state.INGREDIENT_PRICES[type];
     const oldPrice = state.totalPrice;
     const newPrice = oldPrice - showPrice;
-
     setState({
       ...state,
       ingredients: updatedIngredients,
       totalPrice: newPrice,
     });
-    updatePurchasable(updatedIngredients);
   };
   const disableButton = {
     ...state.ingredients,
@@ -77,6 +72,9 @@ export default function BurgerBuilder() {
         totalprice={state.totalPrice}
         disabled={disableButton}
       />
+      <Routes>
+        <Route exact path="/order-page" element={<OrderPage />} />
+      </Routes>
     </>
   );
 }
