@@ -1,9 +1,8 @@
+import { Route, Switch } from "react-router-dom";
 import { useState } from "react";
 import Burger from "./Burger/Burger";
 import BurgerControls from "./BurgerControls/BurgerControls";
-import BootstrapNavbar from "../ReactBootsrap/BootstrapNavbar";
-import OrderPage from "../../pages/OrderPage";
-import { Route, Routes } from "react-router-dom";
+import OrderSummary from "./OrderSummary";
 export default function BurgerBuilder() {
   const [state, setState] = useState({
     ingredients: {
@@ -64,7 +63,6 @@ export default function BurgerBuilder() {
 
   return (
     <>
-      <BootstrapNavbar />
       <Burger ingredients={state.ingredients} />
       <BurgerControls
         addIngredients={addIngredientsHandler}
@@ -72,9 +70,18 @@ export default function BurgerBuilder() {
         totalprice={state.totalPrice}
         disabled={disableButton}
       />
-      <Routes>
-        <Route exact path="/order-page" element={<OrderPage />} />
-      </Routes>
+      <Switch>
+        <Route
+          path="/burger-builder/order-page"
+          exact
+          element={
+            <OrderSummary
+              ingredients={state.ingredients}
+              totalPrice={state.totalPrice}
+            />
+          }
+        />
+      </Switch>
     </>
   );
 }

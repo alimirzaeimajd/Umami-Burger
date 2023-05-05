@@ -26,7 +26,7 @@ const BurgerControls = (props) => (
       />
     ))}
     <button className={styles.OrderButton}>
-      <Link to="/order-page">Order</Link>
+      <Link to="/burger-builder/order-page">Order</Link>
     </button>
   </div>
 );
