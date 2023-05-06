@@ -3,6 +3,7 @@ import { useState } from "react";
 import Burger from "./Burger/Burger";
 import BurgerControls from "./BurgerControls/BurgerControls";
 import OrderSummary from "./OrderSummary";
+import App from "../../redux-test/App";
 export default function BurgerBuilder() {
   const [state, setState] = useState({
     ingredients: {
@@ -81,7 +82,9 @@ export default function BurgerBuilder() {
             />
           }
         />
+        {/* <Route path="/burger-builder/redux-test" exact element={<App />} /> */}
       </Switch>
+      <App />
     </>
   );
 }
