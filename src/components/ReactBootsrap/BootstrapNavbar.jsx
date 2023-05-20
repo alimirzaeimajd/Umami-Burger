@@ -21,8 +21,12 @@ function BootstrapNavbar() {
             <Link className="nav-link" to="/">
               Home
             </Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <Link className="nav-link" to="/counter">
+              Counter
+            </Link>
+            <Link className="nav-link" to="/user-form">
+              User Form
+            </Link>
           </Nav>
         </Container>
       </Navbar>
