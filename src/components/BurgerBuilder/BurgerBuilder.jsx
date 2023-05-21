@@ -1,26 +1,24 @@
-import { Route, Switch } from "react-router-dom";
 import { useState } from "react";
 import Burger from "./Burger/Burger";
 import BurgerControls from "./BurgerControls/BurgerControls";
-import OrderSummary from "./OrderSummary";
-import App from "../../redux-test/App";
-export default function BurgerBuilder() {
-  const [state, setState] = useState({
-    ingredients: {
-      meat: 0,
-      salad: 0,
-      cheese: 0,
-      bacon: 0,
-    },
-    totalPrice: 0,
-    INGREDIENT_PRICES: {
-      salad: 0.25,
-      cheese: 0.5,
-      meat: 5,
-      bacon: 1,
-    },
-    purchasable: false,
-  });
+import { connect } from "react-redux";
+function BurgerBuilder() {
+  // const [state, setState] = useState({
+  //   ingredients: {
+  //     meat: 0,
+  //     salad: 0,
+  //     cheese: 0,
+  //     bacon: 0,
+  //   },
+  //   totalPrice: 0,
+  //   INGREDIENT_PRICES: {
+  //     salad: 0.25,
+  //     cheese: 0.5,
+  //     meat: 5,
+  //     bacon: 1,
+  //   },
+  //   purchasable: false,
+  // });
 
   const addIngredientsHandler = (type) => {
     const oldCount = state.ingredients[type];
@@ -64,27 +62,34 @@ export default function BurgerBuilder() {
 
   return (
     <>
-      <Burger ingredients={state.ingredients} />
+      <Burger ingredients={props.ings} />
       <BurgerControls
-        addIngredients={addIngredientsHandler}
-        removeIngredients={removeIngredientsHandler}
+        addIngredients={onIngredientAdded}
+        removeIngredients={onIngredientRemoved}
         totalprice={state.totalPrice}
         disabled={disableButton}
       />
-      <Switch>
-        <Route
-          path="/burger-builder/order-page"
-          exact
-          element={
-            <OrderSummary
-              ingredients={state.ingredients}
-              totalPrice={state.totalPrice}
-            />
-          }
-        />
-        {/* <Route path="/burger-builder/redux-test" exact element={<App />} /> */}
-      </Switch>
-      <App />
     </>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    ings: state.ingredients,
+    price: state.totalPrice,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onIngredientAdded: (ingName) =>
+      dispatch({ type: actionTypes.ADD_INGREDIENT, ingredientName: ingName }),
+    onIngredientRemoved: (ingName) =>
+      dispatch({
+        type: actionTypes.REMOVE_INGREDIENT,
+        ingredientName: ingName,
+      }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BurgerBuilder);
