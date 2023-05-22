@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./BurgerControls.module.css";
 import BurgerControl from "./BurgerControl/BurgerControl";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+
 const controls = [
   { label: "Meat", type: "meat" },
   { label: "Salad", type: "salad" },
@@ -15,7 +17,7 @@ const BurgerControls = (props) => (
       {" "}
       <strong>purchasable:</strong>
     </p>
-    <p className={styles.h2}>{props.totalprice.toFixed(2)}$</p>
+    <p className={styles.h2}>{props.price.toFixed(2)}$</p>
     {controls.map((ctrl) => (
       <BurgerControl
         key={ctrl.label}
@@ -31,4 +33,11 @@ const BurgerControls = (props) => (
   </div>
 );
 
-export default BurgerControls;
+const mapStateToProps = (state) => {
+  return {
+    ings: state.ingredients,
+    price: state.totalPrice,
+  };
+};
+
+export default connect(mapStateToProps)(BurgerControls);

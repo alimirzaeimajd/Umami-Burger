@@ -4,58 +4,8 @@ import * as actionTypes from "../../store/action";
 import { connect } from "react-redux";
 
 function BurgerBuilder(props) {
-  // const [state, setState] = useState({
-  //   ingredients: {
-  //     meat: 0,
-  //     salad: 0,
-  //     cheese: 0,
-  //     bacon: 0,
-  //   },
-  //   totalPrice: 0,
-  //   INGREDIENT_PRICES: {
-  //     salad: 0.25,
-  //     cheese: 0.5,
-  //     meat: 5,
-  //     bacon: 1,
-  //   },
-  //   purchasable: false,
-  // });
-
-  // const addIngredientsHandler = (type) => {
-  //   const oldCount = state.ingredients[type];
-  //   const updatedCount = oldCount + 1;
-  //   const updatedIngredients = {
-  //     ...state.ingredients,
-  //   };
-  //   updatedIngredients[type] = updatedCount;
-  //   const showPrice = state.INGREDIENT_PRICES[type];
-  //   const oldPrice = state.totalPrice;
-  //   const newPrice = oldPrice + showPrice;
-  //   setState({
-  //     ...state,
-  //     ingredients: updatedIngredients,
-  //     totalPrice: newPrice,
-  //   });
-  // };
-  // const removeIngredientsHandler = (type) => {
-  //   const oldCount = state.ingredients[type];
-
-  //   const updatedCount = oldCount - 1;
-  //   const updatedIngredients = {
-  //     ...state.ingredients,
-  //   };
-  //   updatedIngredients[type] = updatedCount;
-  //   const showPrice = state.INGREDIENT_PRICES[type];
-  //   const oldPrice = state.totalPrice;
-  //   const newPrice = oldPrice - showPrice;
-  //   setState({
-  //     ...state,
-  //     ingredients: updatedIngredients,
-  //     totalPrice: newPrice,
-  //   });
-  // };
   const disableButton = {
-    ...props.ingredients,
+    ...props.ings,
   };
   for (let key in disableButton) {
     disableButton[key] = disableButton[key] <= 0;
@@ -67,7 +17,7 @@ function BurgerBuilder(props) {
       <BurgerControls
         addIngredients={props.onIngredientAdded}
         removeIngredients={props.onIngredientRemoved}
-        totalprice={props.totalPrice}
+        totalprice={props.price}
         disabled={disableButton}
       />
     </>

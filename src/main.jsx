@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import reducer from "./store/reducer";
 
-export default function Main(props) {
+export default function Main() {
   const store = createStore(
     reducer /* preloadedState, */,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -24,12 +24,7 @@ export default function Main(props) {
             <Route
               path="/burger-builder/order-page"
               exact
-              element={
-                <OrderSummary
-                  ingredients={props.ingredients}
-                  totalPrice={props.totalPrice}
-                />
-              }
+              element={<OrderSummary />}
             />
             <Route path="*" element={<NoPage />} />
           </Route>
