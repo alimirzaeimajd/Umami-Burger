@@ -1,8 +1,9 @@
-import { useState } from "react";
 import Burger from "./Burger/Burger";
 import BurgerControls from "./BurgerControls/BurgerControls";
+import * as actionTypes from "../../store/action";
 import { connect } from "react-redux";
-function BurgerBuilder() {
+
+function BurgerBuilder(props) {
   // const [state, setState] = useState({
   //   ingredients: {
   //     meat: 0,
@@ -20,41 +21,41 @@ function BurgerBuilder() {
   //   purchasable: false,
   // });
 
-  const addIngredientsHandler = (type) => {
-    const oldCount = state.ingredients[type];
-    const updatedCount = oldCount + 1;
-    const updatedIngredients = {
-      ...state.ingredients,
-    };
-    updatedIngredients[type] = updatedCount;
-    const showPrice = state.INGREDIENT_PRICES[type];
-    const oldPrice = state.totalPrice;
-    const newPrice = oldPrice + showPrice;
-    setState({
-      ...state,
-      ingredients: updatedIngredients,
-      totalPrice: newPrice,
-    });
-  };
-  const removeIngredientsHandler = (type) => {
-    const oldCount = state.ingredients[type];
+  // const addIngredientsHandler = (type) => {
+  //   const oldCount = state.ingredients[type];
+  //   const updatedCount = oldCount + 1;
+  //   const updatedIngredients = {
+  //     ...state.ingredients,
+  //   };
+  //   updatedIngredients[type] = updatedCount;
+  //   const showPrice = state.INGREDIENT_PRICES[type];
+  //   const oldPrice = state.totalPrice;
+  //   const newPrice = oldPrice + showPrice;
+  //   setState({
+  //     ...state,
+  //     ingredients: updatedIngredients,
+  //     totalPrice: newPrice,
+  //   });
+  // };
+  // const removeIngredientsHandler = (type) => {
+  //   const oldCount = state.ingredients[type];
 
-    const updatedCount = oldCount - 1;
-    const updatedIngredients = {
-      ...state.ingredients,
-    };
-    updatedIngredients[type] = updatedCount;
-    const showPrice = state.INGREDIENT_PRICES[type];
-    const oldPrice = state.totalPrice;
-    const newPrice = oldPrice - showPrice;
-    setState({
-      ...state,
-      ingredients: updatedIngredients,
-      totalPrice: newPrice,
-    });
-  };
+  //   const updatedCount = oldCount - 1;
+  //   const updatedIngredients = {
+  //     ...state.ingredients,
+  //   };
+  //   updatedIngredients[type] = updatedCount;
+  //   const showPrice = state.INGREDIENT_PRICES[type];
+  //   const oldPrice = state.totalPrice;
+  //   const newPrice = oldPrice - showPrice;
+  //   setState({
+  //     ...state,
+  //     ingredients: updatedIngredients,
+  //     totalPrice: newPrice,
+  //   });
+  // };
   const disableButton = {
-    ...state.ingredients,
+    ...props.ingredients,
   };
   for (let key in disableButton) {
     disableButton[key] = disableButton[key] <= 0;
@@ -64,9 +65,9 @@ function BurgerBuilder() {
     <>
       <Burger ingredients={props.ings} />
       <BurgerControls
-        addIngredients={onIngredientAdded}
-        removeIngredients={onIngredientRemoved}
-        totalprice={state.totalPrice}
+        addIngredients={props.onIngredientAdded}
+        removeIngredients={props.onIngredientRemoved}
+        totalprice={props.totalPrice}
         disabled={disableButton}
       />
     </>

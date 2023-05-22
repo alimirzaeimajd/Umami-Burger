@@ -10,7 +10,10 @@ import { createStore } from "redux";
 import reducer from "./store/reducer";
 
 export default function Main(props) {
-  const store = createStore(reducer);
+  const store = createStore(
+    reducer /* preloadedState, */,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  );
 
   return (
     <Provider store={store}>
